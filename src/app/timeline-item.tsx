@@ -9,7 +9,7 @@ interface TimelineItemProps {
   person: Person;
   startYear: number;
   totalYears: number;
-  index: number;
+  rowIndex: number;
   categories: { [key: string]: Category };
   selectedCategory: string | null;
 }
@@ -18,7 +18,7 @@ export default function TimelineItem({
   person,
   startYear,
   totalYears,
-  index,
+  rowIndex,
   categories,
   selectedCategory,
 }: TimelineItemProps) {
@@ -30,15 +30,13 @@ export default function TimelineItem({
 
   return (
     <div
-      className={`absolute h-8 transition-all duration-200 ${
-        isHighlighted
-          ? (categories[person.category]?.color ?? "bg-gray-300")
-          : "bg-gray-300"
+      className={`absolute h-8 cursor-pointer transition-all duration-200 hover:h-10 hover:shadow-lg ${
+        isHighlighted ? categories[person.category].color : "bg-gray-300"
       }`}
       style={{
         left: `${left}%`,
         width: `${Math.max(width, 0.5)}%`,
-        top: `${index * 40 + 10}px`,
+        top: `${rowIndex * 40 + 10}px`,
         opacity: isHighlighted ? 1 : 0.5,
       }}
     >

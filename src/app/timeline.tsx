@@ -1,10 +1,10 @@
 "use client";
 
 import { type Category, categories } from "@/app/categories";
-import { people } from "@/app/people";
-import TimelineAxis from "@/app/timeline-axis";
-import TimelineItem from "@/app/timeline-item";
-import { type WheelEvent, useRef, useState } from "react";
+import { type Person, people } from "@/app/people";
+import { type WheelEvent, useMemo, useRef, useState } from "react";
+import TimelineAxis from "./timeline-axis";
+import TimelineItem from "./timeline-item";
 
 export default function TimeLine() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -26,39 +26,62 @@ export default function TimeLine() {
     );
   };
 
+  const rowAssignments = useMemo(() => {
+    const sortedPeople = [...people].sort((a, b) => a.birthYear - b.birthYear);
+    const rows: Person[][] = [];
+
+    for (const person of sortedPeople) {
+      let assigned = false;
+
+      for (const row of rows) {
+        const lastPersonInRow = row[row.length - 1];
+        if (person.birthYear > lastPersonInRow.deathYear + 10) {
+          row.push(person);
+          assigned = true;
+          break;
+        }
+      }
+      if (!assigned) {
+        rows.push([person]);
+      }
+    }
+
+    return rows;
+  }, []);
+
   return (
-    <>
+    <div className="flex h-screen w-full flex-col">
       <Legend
         categories={categories}
         onCategorySelect={handleCategorySelect}
         selectedCategory={selectedCategory}
       />
 
-      <div className="flex h-screen w-full flex-col">
-        <div
-          className="flex-1 overflow-x-auto"
-          onWheel={handleScroll}
-          ref={timelineRef}
-        >
-          <div className="relative h-full w-[400vw]">
-            <TimelineAxis startYear={startYear} endYear={endYear} />
-            <div className="absolute top-8 right-0 bottom-0 left-0">
-              {people.map((person, index) => (
+      <div
+        className="flex-1 overflow-x-auto"
+        onWheel={handleScroll}
+        ref={timelineRef}
+      >
+        <div className="relative h-full w-[400vw]">
+          <TimelineAxis startYear={startYear} endYear={endYear} />
+          <div className="absolute top-8 right-0 bottom-0 left-0">
+            {rowAssignments.map((row, rowIndex) =>
+              row.map((person) => (
                 <TimelineItem
                   key={person.name}
                   person={person}
                   startYear={startYear}
                   totalYears={totalYears}
-                  index={index}
+                  rowIndex={rowIndex}
                   categories={categories}
                   selectedCategory={selectedCategory}
                 />
-              ))}
-            </div>
+              )),
+            )}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
