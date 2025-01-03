@@ -30,8 +30,10 @@ export default function TimelineItem({
 
   return (
     <div
-      className={`absolute h-8 cursor-pointer transition-all duration-200 hover:h-10 hover:shadow-lg ${
-        isHighlighted ? categories[person.category].color : "bg-gray-300"
+      className={`absolute h-8 transition-all duration-200 ${
+        isHighlighted
+          ? (categories[person.category]?.color ?? "bg-gray-300")
+          : "bg-gray-300"
       }`}
       style={{
         left: `${left}%`,
