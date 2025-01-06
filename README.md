@@ -1,4 +1,10 @@
-# Next.js Starter (App Router)
+# Who Lived When
+
+This is a fun, brief project to digitize the data once collected on Reddit's `r/dataisbeautiful` [Who Lived When](https://www.reddit.com/r/dataisbeautiful/comments/1ay3vuu/oc_who_lived_when_the_overlapping_lives_of/).
+As fun as this is, I cannot take credit for the idea but I enjoy messing around with web development and figured why not 
+give it a try. 
+
+All of this data is currently stored locally `people.ts`, but it's entirely possible this grows and thus require changes.  
 
 ## Getting Started
 
