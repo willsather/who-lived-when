@@ -11,6 +11,5 @@ export const categories: { [key: string]: Category } = {
   Music: { name: "Music", color: "bg-pink-500" },
   Philosophy: { name: "Philosophy", color: "bg-purple-500" },
   Politics: { name: "Politics", color: "bg-orange-500" },
-  Religion: { name: "Religion", color: "bg-indigo-500" },
   Science: { name: "Science", color: "bg-blue-500" },
 };
