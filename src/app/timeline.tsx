@@ -4,33 +4,18 @@ import { categories } from "@/app/categories";
 import Legend from "@/app/legend";
 import { type Person, people } from "@/app/people";
 import { ChevronDown, ChevronUp, X } from "lucide-react";
-import { type WheelEvent, useEffect, useMemo, useRef, useState } from "react";
+import { type WheelEvent, useMemo, useRef, useState } from "react";
 import TimelineAxis from "./timeline-axis";
 import TimelineItem from "./timeline-item";
 
 export default function TimeLine() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const timelineRef = useRef<HTMLDivElement>(null);
 
   const startYear = 1400;
   const endYear = new Date().getFullYear();
   const totalYears = endYear - startYear;
-
-  // TODO: Refactor, v0 generated this to check if mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
-  }, []);
 
   const handleScroll = (e: WheelEvent<HTMLDivElement>) => {
     if (timelineRef.current) {
@@ -44,10 +29,8 @@ export default function TimeLine() {
       prevCategory === category ? null : category,
     );
 
-    // Close drawer after selection on mobile
-    if (isMobile) {
-      setIsDrawerOpen(false);
-    }
+    // close drawer after selection (if mobile)
+    setIsDrawerOpen(false);
   };
 
   const rowAssignments = useMemo(() => {
