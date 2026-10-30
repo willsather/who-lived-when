@@ -42,7 +42,7 @@ export default function TimelineItem({
         opacity: isHighlighted ? 1 : 0.5,
       }}
     >
-      <span className="-translate-y-1/2 absolute top-1/2 left-2 transform whitespace-nowrap font-semibold text-sm text-white">
+      <span className="absolute top-1/2 left-2 -translate-y-1/2 transform text-sm font-semibold whitespace-nowrap text-white">
         {person.name}
       </span>
     </div>

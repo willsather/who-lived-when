@@ -1,6 +1,6 @@
-import { type Category, categories } from "@/app/categories";
 import { ChevronDown, ChevronUp, X } from "lucide-react";
 import { useState } from "react";
+import type { Category } from "@/app/categories";
 
 interface MobileLegendProps {
   categories: { [key: string]: Category };
@@ -20,7 +20,7 @@ export default function MobileLegend({
       {/* Mobile Legend Drawer Toggle - Only visible on mobile */}
       <button
         type="button"
-        className="fixed right-0 bottom-0 left-0 z-10 flex items-center justify-center border-gray-200 border-t bg-white p-2 md:hidden"
+        className="fixed right-0 bottom-0 left-0 z-10 flex items-center justify-center border-t border-gray-200 bg-white p-2 md:hidden"
         onClick={() => setIsDrawerOpen(!isDrawerOpen)}
       >
         <span className="mr-2">Filter by Category</span>
@@ -29,11 +29,10 @@ export default function MobileLegend({
 
       {/* Mobile Legend Drawer - Only visible on mobile when open */}
       <div
-        className={`fixed right-0 bottom-0 left-0 z-20 border-gray-200 border-t bg-white transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed right-0 bottom-0 left-0 z-20 border-t border-gray-200 bg-white transition-transform duration-300 ease-in-out md:hidden ${
           isDrawerOpen ? "translate-y-0" : "translate-y-full"
         }`}
         style={{
-          transform: isDrawerOpen ? "translateY(0)" : "translateY(100%)",
           height: "auto",
           maxHeight: "70vh",
         }}
@@ -49,7 +48,7 @@ export default function MobileLegend({
             <X size={24} />
           </button>
 
-          <h3 className="mb-4 font-semibold text-lg">Filter by Category</h3>
+          <h3 className="mb-4 text-lg font-semibold">Filter by Category</h3>
           <div className="grid grid-cols-2 gap-4">
             {Object.values(categories).map((category) => (
               <button
@@ -65,7 +64,7 @@ export default function MobileLegend({
                   setIsDrawerOpen(false);
                 }}
               >
-                <div className={`size-4 ${category.color} mr-2 rounded`} />
+                <div className={`size-4 ${category.color} mr-2 rounded-sm`} />
                 <span>{category.name}</span>
               </button>
             ))}

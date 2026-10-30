@@ -1,14 +1,30 @@
 # Who Lived When
 
 This is a fun, brief project to digitize the data once collected on Reddit's `r/dataisbeautiful` [Who Lived When](https://www.reddit.com/r/dataisbeautiful/comments/1ay3vuu/oc_who_lived_when_the_overlapping_lives_of/).
-As fun as this is, I cannot take credit for the idea but I enjoy messing around with web development and figured why not 
-give it a try. 
+As fun as this is, I cannot take credit for the idea but I enjoy messing around with web development and figured why not
+give it a try.
 
-All of this data is currently stored locally `people.ts`, but it's entirely possible this grows and thus require changes.  
+All of this data is currently stored locally `people.ts`, but it's entirely possible this grows and thus require changes.
 
 ## Getting Started
 
+Use Node.js 26 and the pnpm 12.16.1 version declared in `package.json`.
+Dependencies must be at least 48 hours old. Dependency build scripts remain
+restricted; `@swc/core` uses its packaged native binary without running its install script.
+
+### Checks
+
+```bash
+pnpm install --frozen-lockfile
+pnpm test
+pnpm lint
+pnpm exec tsc --noEmit
+pnpm build
+pnpm audit
+```
+
 ### Development mode
+
 ```bash
 pnpm install
 pnpm run dev

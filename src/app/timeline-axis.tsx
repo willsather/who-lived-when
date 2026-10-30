@@ -29,13 +29,13 @@ export default function TimelineAxis({
       {desktopYears.map((year) => (
         <div
           key={year}
-          className="absolute hidden transform text-gray-600 text-sm md:block"
+          className="absolute hidden transform text-sm text-gray-600 md:block"
           style={{
             left: `${((year - desktopYears[0]) / totalYears) * 100}%`,
             transform: "translateX(-50%)",
           }}
         >
-          <div className="-translate-x-1/2 absolute bottom-full left-1/2 mb-1 h-2 w-px transform bg-gray-300" />
+          <div className="absolute bottom-full left-1/2 mb-1 h-2 w-px -translate-x-1/2 transform bg-gray-300" />
           <span className="whitespace-nowrap">{year}</span>
         </div>
       ))}
@@ -44,13 +44,13 @@ export default function TimelineAxis({
       {mobileYears.map((year) => (
         <div
           key={year}
-          className="absolute transform text-gray-600 text-sm md:hidden"
+          className="absolute transform text-sm text-gray-600 md:hidden"
           style={{
             left: `${((year - mobileYears[0]) / totalYears) * 100}%`,
             transform: "translateX(-50%)",
           }}
         >
-          <div className="-translate-x-1/2 absolute bottom-full left-1/2 mb-1 h-2 w-px transform bg-gray-300" />
+          <div className="absolute bottom-full left-1/2 mb-1 h-2 w-px -translate-x-1/2 transform bg-gray-300" />
           <span className="whitespace-nowrap">{year}</span>
         </div>
       ))}

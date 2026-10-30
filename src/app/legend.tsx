@@ -20,7 +20,7 @@ export default function Legend({
           type="button"
           onClick={() => onCategorySelect(category.name)}
         >
-          <div className={`size-4 ${category.color} mr-2 rounded`} />
+          <div className={`size-4 ${category.color} mr-2 rounded-sm`} />
           <span>{category.name}</span>
         </button>
       ))}
